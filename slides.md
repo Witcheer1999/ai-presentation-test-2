@@ -4,11 +4,47 @@ theme: brand-pro
 paginate: true
 ---
 
+
+<!-- Cover Image -->
+<!-- class: full-image -->
+![bg](./assets/epicode.png)
+
+---
+
 <!-- Cover -->
 <!-- class: lead center-y -->
 # Machine Learning vs Deep Learning
 ## Differenze fondamentali, implicazioni e use case
 <span class="badge">AI · Workshop</span>
+
+---
+
+<!-- Agenda (timeline) -->
+# Agenda
+## Percorso della sessione
+<ul class="timeline">
+  <li class="timeline__item">
+    <div class="muted">1</div>
+    <div><span class="timeline__dot"></span>Introduzione — ML vs DL, contesto e motivazioni</div>
+  </li>
+  <li class="timeline__item">
+    <div class="muted">2</div>
+    <div><span class="timeline__dot"></span>Reti neurali — neurone, layer, attivazioni; FFN, CNN, RNN</div>
+  </li>
+  <li class="timeline__item">
+    <div class="muted">3</div>
+    <div><span class="timeline__dot"></span>Workflow — dati, preprocessing, training, metriche</div>
+  </li>
+  <li class="timeline__item">
+    <div class="muted">4</div>
+    <div><span class="timeline__dot"></span>MLOps — automazione, deploy, monitoraggio e drift</div>
+  </li>
+  <li class="timeline__item">
+    <div class="muted">5</div>
+    <div><span class="timeline__dot"></span>Best practice & Use case — principi data-centric e casi reali</div>
+  </li>
+</ul>
+
 
 ---
 

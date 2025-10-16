@@ -506,10 +506,18 @@ section.slide--speaker .speaker {
    17) Final Recap / Next Steps slide
 ----------------------------------------- */
 
+/* 17) Final Recap / Next Steps slide — hardened for export */
+section.slide--recap { /* slightly smaller type to reduce wrap in PDF */
+  font-size: 26px;
+}
+
 section.slide--recap .recap {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* responsive columns that won’t squish in exporter */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: calc(var(--gap) + 8px);
+  align-items: start;       /* prevent stretch causing tall cards */
+  align-content: start;
 }
 
 .recap__card {
@@ -518,44 +526,59 @@ section.slide--recap .recap {
   border-radius: var(--radius);
   padding: 20px;
   box-shadow: var(--shadow);
+  display: flex;            /* consistent vertical flow */
+  flex-direction: column;
+  gap: 10px;
+  /* prevent odd split/tearing in print/PDF engines */
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
-.recap__card--tint { background: #F7FAFF; }   /* very light blue */
-.recap__title { font-weight: 800; margin: 0 0 .35em; color: var(--ink); }
-.recap__list { margin: 0; padding-left: 1.1em; }
-.recap__list li { margin-top: .35em; }
 
-/* Next steps column using existing .steps style */
-.next-steps { margin-top: 10px; }
+.recap__card--tint { background: #F7FAFF; }
 
-/* CTA buttons */
-.btn {
-  display: inline-block;
+.recap__title {
   font-weight: 800;
-  border-radius: 12px;
-  padding: .6em 1em;
-  border: 1px solid rgba(0,0,0,.08);
-  background: var(--paper-plain);
+  margin: 0;
   color: var(--ink);
-  box-shadow: var(--shadow);
-}
-.btn--primary {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #fff;
-  border-color: transparent;
-}
-.btn--ghost {
-  background: transparent;
-  border: 1px solid rgba(0,0,0,.12);
-  color: var(--ink);
+  line-height: 1.15;
 }
 
-/* Utilities specific to recap layout */
-.cta-row { display:flex; flex-wrap:wrap; gap:10px; margin-top: 14px; }
+.recap__list {
+  margin: 0;
+  padding-left: 1.1em;
+  list-style-position: outside; /* more stable bullets in PDF */
+}
 
+.recap__list li {
+  margin-top: .35em;
+}
+
+.recap__list.bullets--big li {
+  line-height: 1.28; /* keep big bullets compact */
+}
+
+/* optional: tighten huge words (helps with long Italian lines) */
+section.slide--recap .recap,
+section.slide--recap .recap * {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* fallbacks for narrower canvases in export */
 @media (max-width: 1200px){
-  section.slide--recap .recap { grid-template-columns: 1fr 1fr; }
+  section.slide--recap .recap {
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  }
 }
 @media (max-width: 900px){
-  section.slide--recap .recap,
-  section.slide--speaker .speaker { grid-template-columns: 1fr; }
+  section.slide--recap .recap {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+section.full-image {
+  background-size: cover;
+  background-position: center;
 }
