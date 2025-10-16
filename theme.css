@@ -385,3 +385,61 @@ pre {
    14) Print tweaks (optional)
 ----------------------------------------- */
 @page { margin: 0; }
+
+
+
+/* -----------------------------------------
+   15) Pagination (bottom-left) & Logo (top-right)
+----------------------------------------- */
+
+/* Tweakable tokens */
+:root{
+  --page-x: -70px;       /* distance from left */
+  --page-y: -60px;       /* distance from bottom */
+  --page-size: .68em;   /* counter size */
+
+  --logo-w: 96px;       /* logo width */
+  --logo-h: 32px;       /* logo height */
+  --logo-x: 28px;       /* distance from right */
+  --logo-y: 24px;       /* distance from top */
+  --logo-opacity: .95;  /* logo opacity */
+}
+
+/* Ensure slides are positioning context */
+section { position: relative; }
+
+/* Page counter: "current / total" */
+section::after{
+  content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
+  position: absolute;
+  left: var(--page-x);
+  bottom: var(--page-y);
+  font-size: var(--page-size);
+  color: rgba(0,0,0,.55);
+  letter-spacing: .02em;
+}
+
+/* Hide counter on special slides if you add .no-page */
+section.no-page::after{ content: none; }
+
+/* Logo top-right (appears on every slide) */
+section::before{
+  content: "";
+  position: absolute;
+  top: var(--logo-y);
+  right: var(--logo-x);
+  width: var(--logo-w);
+  height: var(--logo-h);
+  background-image: url("/assets/logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right top;
+  opacity: var(--logo-opacity);
+  pointer-events: none;
+}
+
+/* Hide logo on specific slides if you add .no-logo */
+section.no-logo::before{ content: none; }
+
+/* Optional: better contrast on inverse slides */
+section.inverse::after{ color: rgba(255,255,255,.8); }
