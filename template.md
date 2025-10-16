@@ -276,3 +276,73 @@ Testo di <span class="hl">corpo</span> con highlight blu e <span class="accent">
 def f1_score(y_true, y_pred):
     # placeholder di esempio
     return 0.81
+```
+---
+
+
+
+<!-- class: slide--speaker -->
+# Mi presento
+<div class="speaker">
+  <div class="speaker__avatar">
+    <!-- Optional photo; remove <img> if not needed -->
+    <img src="/assets/author.jpg" alt="Speaker">
+  </div>
+  <div>
+    <div class="speaker__name">Michael Bagnoli</div>
+    <div class="speaker__role">AI Engineer · Docente · Videomaker</div>
+    <p class="speaker__bio corpus">
+      Lavoro su AI end-to-end: ML tradizionale, Deep Learning e agenti LLM.
+      Progetti reali, docenze aziendali e focus su training, valutazione, deploy.
+    </p>
+    <div class="speaker__meta">
+      <span class="badge--soft">Toscana · IT</span>
+      <span class="badge--soft">ForMinds</span>
+      <span class="badge--soft">Golden Bloom</span>
+    </div>
+    <div class="chips">
+      <span class="chip">michael@example.com</span>
+      <span class="chip">@michaelbagnoli</span>
+      <span class="chip">www.michael.dev</span>
+    </div>
+  </div>
+</div>
+
+---
+
+<!-- class: slide--recap -->
+# Recap & Next Steps
+<div class="recap">
+  <div class="recap__card recap__card--tint">
+    <h3 class="recap__title">Oggi abbiamo visto</h3>
+    <ul class="recap__list">
+      <li>Cos’è il Deep Learning</li>
+      <li>ML vs DL: differenze</li>
+      <li>Use case reali</li>
+    </ul>
+  </div>
+  <div class="recap__card">
+    <h3 class="recap__title">Key takeaways</h3>
+    <ul class="recap__list bullets--big">
+      <li>Qualità dati > modello</li>
+      <li>Valutare prima di scalare</li>
+      <li>MLOps = continuità</li>
+    </ul>
+  </div>
+  <div class="recap__card">
+    <h3 class="recap__title">Prossimi passi</h3>
+    <ol class="steps next-steps">
+      <li>Preparare dataset</li>
+      <li>Baseline + metriche</li>
+      <li>Tuning & validazione</li>
+    </ol>
+  </div>
+  <div class="recap__card">
+    <h3 class="recap__title">Prossimi passi</h3>
+    <ol class="steps next-steps">
+      <li>Preparare dataset</li>
+      <li>Baseline + metriche</li>
+      <li>Tuning & validazione</li>
+    </ol>
+  </div>
+</div>
