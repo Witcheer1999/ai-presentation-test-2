@@ -1,0 +1,387 @@
+/* @theme brand-pro */
+
+/* -----------------------------------------
+   1) Typography & Design Tokens
+----------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+:root{
+  /* Brand palette — unchanged class API, updated values per your spec */
+  --ink:        #192155;           /* titles/subtitles (Darkside) */
+  --ink-80:     rgba(25,33,85,.80);
+  --ink-60:     rgba(25,33,85,.60);
+  --ink-30:     rgba(25,33,85,.30);
+
+  --ink-body:   #000000;           /* corpus/body text (black) */
+
+  --paper:      #F0F0F0;           /* slide background (Off-light) */
+  --paper-plain:#ffffff;           /* white surface for cards, tables, etc. */
+  --paper-soft: #F7F9FF;           /* subtle alt bg (very light blue tint) */
+
+  --accent:     #D60077;           /* Epic magenta (title/sub highlights, accents) */
+  --accent-2:   #00A0F8;           /* blue for corpus highlights */
+
+  --success:    #2EAD6D;
+  --warning:    #F7C948;
+  --danger:     #E03E3E;
+
+  /* Gentle gradient only for decorative touches */
+  --grad-a:     #300499;
+  --grad-b:     #00A0F8;
+
+  /* Type scale & rhythm */
+  --font-sans:  'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --lh:         1.35;
+  --gap:        28px;
+  --pad-x:      88px;
+  --pad-y:      72px;
+  --radius:     22px;
+  --shadow:     0 10px 30px rgba(0,0,0,.06);
+
+  /* Content max width for better measure */
+  --measure:    1100px;
+}
+
+/* -----------------------------------------
+   2) Global Base
+----------------------------------------- */
+section {
+  font-family: var(--font-sans);
+  color: var(--ink-body);          /* default text = black corpus */
+  background: var(--paper);        /* Off-light */
+  padding: var(--pad-y) var(--pad-x);
+  font-size: 28px;
+  line-height: var(--lh);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+section * { box-sizing: border-box; }
+
+section header, section footer {
+  color: rgba(0,0,0,.55);
+  font-size: 0.62em;
+}
+
+/* Container to constrain content width on wide canvases */
+.container {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+/* -----------------------------------------
+   3) Typographic System
+----------------------------------------- */
+h1, .title   { font-weight: 800; line-height: 1.12; letter-spacing: -0.01em; }
+h2, .subtitle{ font-weight: 800; line-height: 1.15; letter-spacing: -0.005em; } /* stronger per request */
+h3           { font-weight: 700; line-height: 1.2; }
+
+/* Ultra-bold and large titles, Darkside */
+h1,.title    { font-size: 2.6em; margin: 0 0 .35em; color: var(--ink); }
+h2,.subtitle { font-size: 1.55em; margin: 0 0 .75em; color: var(--ink); }
+h3           { font-size: 1.05em; margin: 0 0 .5em; color: var(--ink); }
+
+/* Corpus black, subtle variants remain available */
+.corpus      { font-size: 1em; color: var(--ink-body); }
+.caption     { font-size: .75em; color: rgba(0,0,0,.65); }
+.eyebrow     { font-size: .75em; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .5em; }
+
+.lead { font-size: 1.15em; color: rgba(0,0,0,.85); }
+
+/* Emphasis helpers (no MD changes required) */
+.accent { color: var(--accent); font-weight: 800; }  /* use inside titles/subtitles */
+.muted  { color: rgba(0,0,0,.65); }
+.hl     { color: var(--accent-2); font-weight: 700; }/* blue highlight for corpus */
+
+/* -----------------------------------------
+   4) Slide “Kinds” (apply as section classes)
+----------------------------------------- */
+
+/* Lead / Cover — clean, bright, light glow */
+section.lead {
+  justify-content: center;
+  background:
+    radial-gradient(1200px 1200px at 80% -10%, rgba(0,160,248,.10), transparent 60%),
+    var(--paper);
+  color: var(--ink); /* keep headings readable on light */
+}
+section.lead .title,
+section.lead .subtitle,
+section.lead .corpus { color: var(--ink); }
+.badge {
+  background: #fff; color: var(--ink);
+  padding: .35em .7em; border-radius: 999px; font-weight: 700; font-size: .75em; display: inline-block;
+  border: 1px solid rgba(0,0,0,.06); box-shadow: var(--shadow);
+}
+
+/* Agenda */
+section.slide--agenda ul { columns: 2; column-gap: 48px; }
+section.slide--agenda li { break-inside: avoid; }
+
+/* Bio */
+section.slide--bio .bio {
+  display: grid; grid-template-columns: 120px 1fr; gap: 24px; align-items: center;
+}
+.bio__avatar {
+  width: 120px; height: 120px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: var(--shadow);
+}
+
+/* Inverse (dark) — kept for optional contrast slides */
+section.inverse {
+  background: #0F1330;
+  color: #fff;
+}
+section.inverse * { color: #fff; }
+section.inverse .muted { color: rgba(255,255,255,.75); }
+section.inverse .card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); }
+
+/* -----------------------------------------
+   5) Layout Utilities
+----------------------------------------- */
+
+/* Standard stack spacing */
+.stack > * + * { margin-top: var(--gap); }
+
+/* Split (2 columns) */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--gap) + 8px);
+  align-items: start;
+}
+
+/* 3 columns */
+.cols-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--gap) + 8px);
+}
+
+/* 2×2 grid */
+.grid-2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: calc(var(--gap) + 8px);
+}
+
+/* Media left / text right */
+.media {
+  display: grid; grid-template-columns: 42% 1fr; gap: calc(var(--gap) + 8px);
+}
+
+/* Center vertically for small-corpus slides */
+.center-y { justify-content: center; }
+
+/* Content card — very light tinted surfaces */
+.card {
+  background: var(--paper-plain);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+.card.card--tint-blue { background: #F7FAFF; }
+.card.card--tint-mag  { background: #FFF5FA; }
+
+/* KPI / Stat block */
+.kpi {
+  padding: 20px 22px; border-radius: 18px;
+  background: #F7FAFF; /* very light blue */
+  border: 1px solid rgba(0,0,0,.06);
+  display: grid; gap: 6px; align-content: start;
+}
+.kpi__value { font-size: 1.9em; font-weight: 800; color: var(--ink); line-height: 1; }
+.kpi__label { font-size: .8em; color: rgba(0,0,0,.65); }
+
+/* Comparison blocks */
+.compare {
+  display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--gap) + 8px);
+}
+.compare .pros, .compare .cons {
+  padding: 20px; border-radius: 16px; border: 1px solid rgba(0,0,0,.06); background: var(--paper-plain);
+}
+.compare .pros { background: #F2FBF6; }
+.compare .cons { background: #FFF4F4; }
+
+/* Timeline */
+.timeline { display: grid; gap: 16px; }
+.timeline__item {
+  display: grid; grid-template-columns: 140px 1fr; gap: 18px; align-items: start;
+}
+.timeline__dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)); margin-top: .4em;
+}
+
+/* Steps */
+.steps { counter-reset: step; display: grid; gap: 16px; }
+.steps li{ list-style: none; position: relative; padding-left: 48px; }
+.steps li::before{
+  counter-increment: step; content: counter(step);
+  position: absolute; left: 0; top: .1em;
+  width: 34px; height: 34px; border-radius: 10px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #fff; font-weight: 800;
+}
+
+/* -----------------------------------------
+   6) Lists & Bullets
+----------------------------------------- */
+ul, ol { margin: .3em 0 0; padding-left: 1em; }
+li + li { margin-top: .4em; }
+
+.bullets--tight li + li { margin-top: .2em; }
+.bullets--loose li + li { margin-top: .7em; }
+
+.bullets--check li { list-style: none; position: relative; padding-left: 1.6em; }
+.bullets--check li::before{
+  content: "✓"; position: absolute; left: 0; top: .05em; font-weight: 800; color: var(--success);
+}
+
+.bullets--dash li { list-style: none; position: relative; padding-left: 1.2em; }
+.bullets--dash li::before{
+  content: "–"; position: absolute; left: 0; top: 0; color: var(--accent);
+  font-weight: 800;
+}
+
+.bullets--big li { font-size: 1.08em; line-height: 1.28; }
+
+/* -----------------------------------------
+   7) Callouts / Badges / Pills
+----------------------------------------- */
+.callout {
+  border-left: 6px solid var(--accent);
+  background: #FFF5FA; /* very light magenta tint */
+  padding: 18px 20px; border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.06);
+}
+.callout--info    { border-color: var(--accent-2); background: #F7FAFF; }
+.callout--success { border-color: var(--success); background: #F2FBF6; }
+.callout--warn    { border-color: var(--warning); background: #FFFAEF; }
+
+.pill {
+  display: inline-block; padding: .35em .8em; border-radius: 999px;
+  background: var(--paper-plain); color: var(--ink-body); font-weight: 700; font-size: .75em;
+  border: 1px solid rgba(0,0,0,.06);
+}
+.pill--accent{ background: var(--accent); color: #fff; border-color: transparent; }
+.pill--ink   { background: var(--ink); color: #fff; border-color: transparent; }
+
+/* -----------------------------------------
+   8) Media Helpers
+----------------------------------------- */
+.img--cover img, .img--cover video { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
+.img--rounded img { border-radius: var(--radius); box-shadow: var(--shadow); }
+.frame { padding: 10px; border-radius: calc(var(--radius) + 6px); background: var(--paper-plain); border: 1px solid rgba(0,0,0,.06); }
+
+/* Side caption */
+.figure { display: grid; grid-template-columns: 1fr 280px; gap: 18px; align-items: start; }
+
+/* -----------------------------------------
+   9) Tables & Code
+----------------------------------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9em;
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  background: var(--paper-plain);
+}
+th, td { padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,.06); }
+thead th { background: #FAFBFC; text-align: left; font-weight: 800; color: var(--ink); }
+
+pre, code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: .85em;
+}
+pre {
+  background: #0F1330; color: #fff; padding: 18px; border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+/* -----------------------------------------
+   10) Forms of Common Slides
+----------------------------------------- */
+
+/* Standard title–subtitle–corpus scaffold */
+.std {
+  display: grid; gap: 18px;
+}
+.std .title    { margin-bottom: .15em; }
+.std .subtitle { margin-top: -.2em; }
+.std .corpus   { max-width: var(--measure); }
+
+/* 2×2 content cards (quick feature grid) */
+.grid-2x2 .card h3 { margin-bottom: .25em; }
+
+/* 3-column feature list */
+.cols-3 .feature { padding: 18px; border-radius: 16px; background: var(--paper-plain); border: 1px solid rgba(0,0,0,.06); }
+.cols-3 .feature h3 { margin-bottom: .35em; }
+
+/* Checklist slide */
+.checklist li{ list-style: none; position: relative; padding-left: 1.8em; }
+.checklist li::before{
+  content: ""; position: absolute; left: 0; top: .15em;
+  width: 18px; height: 18px; border-radius: 5px; border: 2px solid var(--ink-30);
+}
+.checklist li.is-done::before{
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-color: transparent;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.04) inset;
+}
+.checklist li.is-done { color: var(--ink); font-weight: 600; }
+
+/* Quote */
+.quote {
+  font-size: 1.2em; line-height: 1.25; font-weight: 700;
+  border-left: 8px solid var(--ink);
+  padding-left: 18px;
+}
+.quote cite { display: block; margin-top: 8px; font-size: .75em; color: rgba(0,0,0,.65); font-weight: 600; }
+
+/* -----------------------------------------
+   11) Spacing & Alignment Utilities
+----------------------------------------- */
+.mt-0{ margin-top:0 !important; } .mb-0{ margin-bottom:0 !important; }
+.mt-s{ margin-top: .5rem !important; } .mb-s{ margin-bottom: .5rem !important; }
+.mt-m{ margin-top: 1rem !important; } .mb-m{ margin-bottom: 1rem !important; }
+.mt-l{ margin-top: 2rem !important; } .mb-l{ margin-bottom: 2rem !important; }
+
+.pt-0{ padding-top:0 !important; } .pb-0{ padding-bottom:0 !important; }
+.pt-s{ padding-top:.5rem !important; } .pb-s{ padding-bottom:.5rem !important; }
+.pt-m{ padding-top:1rem !important; } .pb-m{ padding-bottom:1rem !important; }
+.pt-l{ padding-top:2rem !important; } .pb-l{ padding-bottom:2rem !important; }
+
+.center   { text-align: center !important; }
+.right    { text-align: right !important; }
+.middle   { align-items: center !important; }
+.stretch  { align-items: stretch !important; }
+
+/* Width helpers */
+.w-50 { width: 50% !important; }
+.w-66 { width: 66% !important; }
+.w-100{ width: 100% !important; }
+
+/* -----------------------------------------
+   12) Accent Bars & Dividers
+----------------------------------------- */
+.hr { height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius: 4px; width: 120px; }
+.rule { height: 1px; background: rgba(0,0,0,.12); }
+
+/* -----------------------------------------
+   13) Badges row
+----------------------------------------- */
+.badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.badges .pill { font-weight: 700; }
+
+/* -----------------------------------------
+   14) Print tweaks (optional)
+----------------------------------------- */
+@page { margin: 0; }
