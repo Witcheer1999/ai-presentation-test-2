@@ -430,7 +430,7 @@ section::before{
   right: var(--logo-x);
   width: var(--logo-w);
   height: var(--logo-h);
-  background-image: url("/assets/logo.png");
+  background-image: url("./assets/logo.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right top;
